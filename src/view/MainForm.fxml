@@ -30,7 +30,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="pneStage" layoutY="45.0" prefHeight="339.0" prefWidth="600.0" style="-fx-background-color: FFFFFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="55.0" />
+      <AnchorPane fx:id="pneStage" layoutY="45.0" prefHeight="339.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="55.0" />
 
    </children>
 </AnchorPane>
