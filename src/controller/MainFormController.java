@@ -1,9 +1,12 @@
 package controller;
 
+import com.jfoenix.controls.JFXRippler;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -15,6 +18,10 @@ public class MainFormController {
     public ImageView imgMinimize;
     public AnchorPane pneAppBar;
     public Label lblTitle;
+    public AnchorPane pneSearchStudents;
+    public AnchorPane pneAddNewStudent;
+    public JFXRippler rprAddNewStudent;
+    public JFXRippler rprSearchStudents;
     private double xMousePos;
     private double yMousePos;
 
@@ -53,4 +60,21 @@ public class MainFormController {
     }
 
 
+    public void pneAddNewStudent_OnKeyPress(KeyEvent keyEvent) {
+    }
+
+    public void pneAddNewStudent_OnKeyReleased(KeyEvent keyEvent) {
+    }
+
+    public void pneSearchStudents_OnKeyPress(KeyEvent keyEvent) {
+    }
+
+    public void pneSearchStudents_OnKeyReleased(KeyEvent keyEvent) {
+    }
+
+    public void pneSearchStudents_OnMouseClicked(MouseEvent mouseEvent) {
+    }
+
+    public void pneAddNewStudent_OnMouseClicked(MouseEvent mouseEvent) {
+    }
 }
