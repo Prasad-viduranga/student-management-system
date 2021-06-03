@@ -43,7 +43,14 @@ public class MainFormController {
             Parent root = FXMLLoader.load(this.getClass().getResource(url));
             pneStage.getChildren().clear();
             pneStage.getChildren().add(root);
-//            pneStage.getChildren().add()
+            lblTitle.setText(title);
+            Stage stage = (Stage) (pneStage.getScene().getWindow());
+
+            Platform.runLater(()->{
+                stage.sizeToScene();
+                stage.centerOnScreen();
+
+            });
 
         } catch (IOException e) {
             e.printStackTrace();
