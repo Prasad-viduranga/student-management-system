@@ -1,19 +1,12 @@
 package controller;
 
 import com.jfoenix.controls.JFXRippler;
-import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 import java.io.IOException;
-
-
 
 
 public class HomeFormController {
@@ -24,7 +17,6 @@ public class HomeFormController {
     public AnchorPane pneSearchStudents;
 
 
-
     public void initialize() {
         rprAddNewStudent.setControl(pneAddNewStudent);
         rprSearchStudents.setControl(pneSearchStudents);
@@ -32,10 +24,9 @@ public class HomeFormController {
         pneSearchStudents.setFocusTraversable(true);
 
     }
+
     public void pneAddNewStudent_OnKeyPress(KeyEvent keyEvent) {
-        if (keyEvent.getCode() == KeyCode.ENTER || keyEvent.getCode() == KeyCode.SPACE) {
-            rprAddNewStudent.createManualRipple().run();
-        }
+        navigate("Student Management system", "/view/StudentForm.fxml");
     }
 
     public void pneSearchStudents_OnKeyPress(KeyEvent keyEvent) {
@@ -53,18 +44,9 @@ public class HomeFormController {
     }
 
     private void navigate(String title, String url) {
-        try {
-            Parent root = FXMLLoader.load(this.getClass().getResource(url));
-            Scene addNewStudentScene = new Scene(root);
-            Stage primaryStage = (Stage) (rprAddNewStudent.getScene().getWindow());
-            primaryStage.setResizable(true);
-            primaryStage.setScene(addNewStudentScene);
-            primaryStage.setTitle(title);
-            primaryStage.centerOnScreen();
-            Platform.runLater(() -> primaryStage.setResizable(false));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        MainFormController ctrl = (MainFormController) pneSearchStudents.getScene().getUserData();
+        ctrl.navigate(title, url);
+
     }
 
     public void pneAddNewStudent_OnKeyReleased(KeyEvent keyEvent) throws IOException {
