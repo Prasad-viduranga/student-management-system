@@ -22,6 +22,7 @@ public class MainFormController {
     public AnchorPane pneAddNewStudent;
     public JFXRippler rprAddNewStudent;
     public JFXRippler rprSearchStudents;
+    public AnchorPane pneStage;
     private double xMousePos;
     private double yMousePos;
 
