@@ -8,14 +8,12 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
-
 public class HomeFormController {
 
     public JFXRippler rprAddNewStudent;
     public AnchorPane pneAddNewStudent;
     public JFXRippler rprSearchStudents;
     public AnchorPane pneSearchStudents;
-
 
     public void initialize() {
         rprAddNewStudent.setControl(pneAddNewStudent);

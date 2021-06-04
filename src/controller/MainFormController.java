@@ -17,7 +17,6 @@ import java.io.IOException;
 
 public class MainFormController {
 
-
     public ImageView imgClose;
     public ImageView imgMinimize;
     public AnchorPane pneAppBar;
