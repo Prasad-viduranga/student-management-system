@@ -17,6 +17,10 @@ import java.io.IOException;
 
 public class MainFormController {
 
+    public static final int NAV_ICON_NONE = 0;
+    public static final int NAV_ICON_BACK = 1;
+    public static final int NAV_ICON_HOME = 2;
+
     public ImageView imgClose;
     public ImageView imgMinimize;
     public AnchorPane pneAppBar;
@@ -26,26 +30,33 @@ public class MainFormController {
     public JFXRippler rprAddNewStudent;
     public JFXRippler rprSearchStudents;
     public AnchorPane pneStage;
+    public ImageView imgBack;
+    public ImageView imgNav;
     private double xMousePos;
     private double yMousePos;
+    private int icon = NAV_ICON_NONE;
 
     public void initialize() {
         initWindow();
 
-
     }
 
 
-    public void navigate(String title, String url) {
+    public void navigate(String title, String url, int icon) {
 
         try {
+            this.icon = icon;
+            /* Set the icon */
+            System.out.println(title+" , "+icon);
+
             Parent root = FXMLLoader.load(this.getClass().getResource(url));
             pneStage.getChildren().clear();
             pneStage.getChildren().add(root);
-            lblTitle.setText(title);
             Stage stage = (Stage) (pneStage.getScene().getWindow());
+            lblTitle.setText(title);
 
-            Platform.runLater(()->{
+
+            Platform.runLater(() -> {
                 stage.sizeToScene();
                 stage.centerOnScreen();
 
@@ -54,14 +65,17 @@ public class MainFormController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        initWindow();
 
     }
 
     private void initWindow() {
+
         lblTitle.setMouseTransparent(true);
 
         Platform.runLater(() -> {
             lblTitle.setText(((Stage) (imgClose.getScene().getWindow())).getTitle());
+
         });
 
         pneAppBar.setOnMousePressed(event -> {
@@ -84,6 +98,25 @@ public class MainFormController {
         imgMinimize.setOnMouseEntered(event -> imgMinimize.setImage(new Image("/view/assets/icons/minimize-hover.png")));
         imgMinimize.setOnMouseExited(event -> imgMinimize.setImage(new Image("/view/assets/icons/minimize.png")));
         imgMinimize.setOnMouseClicked(event -> ((Stage) (imgClose.getScene().getWindow())).setIconified(true));
+
+        switch (icon) {
+
+            case NAV_ICON_HOME:
+                imgNav.setOnMouseEntered(event -> imgNav.setImage(new Image("view/assets/icons/home-hover.png")));
+                imgNav.setOnMouseExited(event -> imgNav.setImage(new Image("view/assets/icons/home.png")));
+                imgNav.setVisible(true);
+                break;
+
+            case NAV_ICON_BACK:
+                imgNav.setImage(new Image("view/assets/icons/arrow.png"));
+                imgNav.setOnMouseEntered(event -> imgNav.setImage(new Image("view/assets/icons/arrow-hover.png")));
+                imgNav.setOnMouseExited(event -> imgNav.setImage(new Image("view/assets/icons/arrow.png")));
+                imgNav.setVisible(true);
+                break;
+
+        }
+
+
     }
 
 

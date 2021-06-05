@@ -24,13 +24,14 @@ public class HomeFormController {
     }
 
     public void pneAddNewStudent_OnKeyPress(KeyEvent keyEvent) {
-        navigate("Student Management system", "/view/StudentForm.fxml");
+        navigate("Add New Student", "/view/StudentForm.fxml");
     }
 
     public void pneSearchStudents_OnKeyPress(KeyEvent keyEvent) {
-        if (keyEvent.getCode() == KeyCode.ENTER || keyEvent.getCode() == KeyCode.SPACE) {
-            rprSearchStudents.createManualRipple().run();
-        }
+        navigate("Search Student", "/view/StudentForm.fxml");
+//        if (keyEvent.getCode() == KeyCode.ENTER || keyEvent.getCode() == KeyCode.SPACE) {
+//            rprSearchStudents.createManualRipple().run();
+//        }
     }
 
     public void pneSearchStudents_OnMouseClicked(MouseEvent mouseEvent) {
@@ -43,7 +44,8 @@ public class HomeFormController {
 
     private void navigate(String title, String url) {
         MainFormController ctrl = (MainFormController) pneSearchStudents.getScene().getUserData();
-        ctrl.navigate(title, url);
+        ctrl.navigate(title, url,MainFormController.NAV_ICON_BACK);
+
 
     }
 
