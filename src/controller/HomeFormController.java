@@ -1,17 +1,18 @@
 package controller;
 
 import com.jfoenix.controls.JFXRippler;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import util.NavActionListener;
 
 import java.io.IOException;
 
 public class HomeFormController {
 
-    public ImageView imgClose;
+    public String preTitle = "Student Management System";
+    public String preUrl = "/view/HomeForm.fxml";
     public JFXRippler rprAddNewStudent;
     public AnchorPane pneAddNewStudent;
     public JFXRippler rprSearchStudents;
@@ -23,13 +24,9 @@ public class HomeFormController {
         rprSearchStudents.setControl(pneSearchStudents);
         pneAddNewStudent.setFocusTraversable(true);
         pneSearchStudents.setFocusTraversable(true);
-        initWindow();
-    }
-
-    public void initWindow() {
-        //imgNAV
 
     }
+
 
     public void pneAddNewStudent_OnKeyPress(KeyEvent keyEvent) {
         navigate("Add New Student", "/view/StudentForm.fxml");
@@ -50,24 +47,35 @@ public class HomeFormController {
         navigate("Add New Student", "/view/StudentForm.fxml");
     }
 
-    private void navigate(String title, String url) {
-        MainFormController ctrl = (MainFormController) pneSearchStudents.getScene().getUserData();
-        ctrl.navigate(title, url, MainFormController.NAV_ICON_BACK);
-
-
-    }
 
     public void pneAddNewStudent_OnKeyReleased(KeyEvent keyEvent) throws IOException {
         if (keyEvent.getCode() == KeyCode.ENTER || keyEvent.getCode() == KeyCode.SPACE) {
+            preTitle = "Add New Student";
+            preUrl = "/view/StudentForm.fxml";
             navigate("Add New Student", "/view/StudentForm.fxml");
         }
     }
 
     public void pneSearchStudents_OnKeyReleased(KeyEvent keyEvent) {
         if (keyEvent.getCode() == KeyCode.ENTER || keyEvent.getCode() == KeyCode.SPACE) {
+            preTitle = "Search Students";
+            preUrl = "/view/SearchStudentsForm.fxml";
             navigate("Search Students", "/view/SearchStudentsForm.fxml");
         }
     }
 
+
+    private void navigate(String title, String url) {
+
+        System.out.println(preTitle + "     " + preUrl);
+        MainFormController ctrl = (MainFormController) pneSearchStudents.getScene().getUserData();
+        ctrl.navigate(title, url, MainFormController.NAV_ICON_BACK, () -> {
+            System.out.println("working");
+//                MainFormController ctrl = (MainFormController) pneSearchStudents.getScene().getUserData();
+            ctrl.navigate(preTitle, preUrl, MainFormController.NAV_ICON_BACK);
+        });
+
+
+    }
 
 }
