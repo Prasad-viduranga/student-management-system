@@ -46,8 +46,20 @@ public class MainFormController {
 
         try {
             this.icon = icon;
-            /* Set the icon */
-            System.out.println(title+" , "+icon);
+
+            switch (icon) {
+                case NAV_ICON_NONE:
+                    imgNav.setVisible(false);
+                    break;
+                case NAV_ICON_HOME:
+                    imgNav.setImage(new Image("view/assets/icons/home.png"));
+                    imgNav.setUserData(new Image("view/assets/icons/home-hover.png"));
+                    break;
+                case NAV_ICON_BACK:
+                    imgNav.setImage(new Image("view/assets/icons/arrow.png"));
+                    imgNav.setUserData(new Image("view/assets/icons/arrow-hover.png"));
+                    break;
+            }
 
             Parent root = FXMLLoader.load(this.getClass().getResource(url));
             pneStage.getChildren().clear();
@@ -99,26 +111,20 @@ public class MainFormController {
         imgMinimize.setOnMouseExited(event -> imgMinimize.setImage(new Image("/view/assets/icons/minimize.png")));
         imgMinimize.setOnMouseClicked(event -> ((Stage) (imgClose.getScene().getWindow())).setIconified(true));
 
-        switch (icon) {
-
-            case NAV_ICON_HOME:
-                imgNav.setOnMouseEntered(event -> imgNav.setImage(new Image("view/assets/icons/home-hover.png")));
-                imgNav.setOnMouseExited(event -> imgNav.setImage(new Image("view/assets/icons/home.png")));
-                imgNav.setVisible(true);
-                break;
-
-            case NAV_ICON_BACK:
-                imgNav.setImage(new Image("view/assets/icons/arrow.png"));
-                imgNav.setOnMouseEntered(event -> imgNav.setImage(new Image("view/assets/icons/arrow-hover.png")));
-                imgNav.setOnMouseExited(event -> imgNav.setImage(new Image("view/assets/icons/arrow.png")));
-                imgNav.setVisible(true);
-                break;
-
-        }
-
+        imgNav.setOnMouseEntered(event -> swapNavIcon());
+        imgNav.setOnMouseExited(event -> swapNavIcon());
 
     }
 
+    private void swapNavIcon() {
+
+        if (icon != NAV_ICON_NONE) {
+            Image tempImage = imgNav.getImage();
+            imgNav.setImage((Image) imgNav.getUserData());
+            imgNav.setUserData(tempImage);
+
+        }
+    }
 
     public void pneAddNewStudent_OnKeyPress(KeyEvent keyEvent) {
     }
@@ -137,4 +143,7 @@ public class MainFormController {
 
     public void pneAddNewStudent_OnMouseClicked(MouseEvent mouseEvent) {
     }
+
 }
+
+
