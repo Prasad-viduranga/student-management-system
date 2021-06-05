@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import util.NavActionListener;
 
 import java.io.IOException;
 
@@ -35,17 +36,22 @@ public class MainFormController {
     private double xMousePos;
     private double yMousePos;
     private int icon = NAV_ICON_NONE;
+    private NavActionListener navActionListener = null;
 
     public void initialize() {
         initWindow();
 
     }
 
-
     public void navigate(String title, String url, int icon) {
+        navigate(title, url, icon, null);
+    }
+
+    public void navigate(String title, String url, int icon, NavActionListener navActionListener) {
 
         try {
             this.icon = icon;
+            this.navActionListener = navActionListener;
 
             switch (icon) {
                 case NAV_ICON_NONE:
@@ -77,7 +83,7 @@ public class MainFormController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        initWindow();
+
 
     }
 
@@ -113,6 +119,11 @@ public class MainFormController {
 
         imgNav.setOnMouseEntered(event -> swapNavIcon());
         imgNav.setOnMouseExited(event -> swapNavIcon());
+        imgNav.setOnMouseClicked(event -> {
+            if (navActionListener != null){
+                navActionListener.handler();
+            }
+        });
 
     }
 

@@ -1,6 +1,7 @@
 package controller;
 
 import com.jfoenix.controls.JFXRippler;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -10,16 +11,23 @@ import java.io.IOException;
 
 public class HomeFormController {
 
+    public ImageView imgClose;
     public JFXRippler rprAddNewStudent;
     public AnchorPane pneAddNewStudent;
     public JFXRippler rprSearchStudents;
     public AnchorPane pneSearchStudents;
 
     public void initialize() {
+
         rprAddNewStudent.setControl(pneAddNewStudent);
         rprSearchStudents.setControl(pneSearchStudents);
         pneAddNewStudent.setFocusTraversable(true);
         pneSearchStudents.setFocusTraversable(true);
+        initWindow();
+    }
+
+    public void initWindow() {
+        //imgNAV
 
     }
 
@@ -44,7 +52,7 @@ public class HomeFormController {
 
     private void navigate(String title, String url) {
         MainFormController ctrl = (MainFormController) pneSearchStudents.getScene().getUserData();
-        ctrl.navigate(title, url,MainFormController.NAV_ICON_BACK);
+        ctrl.navigate(title, url, MainFormController.NAV_ICON_BACK);
 
 
     }
