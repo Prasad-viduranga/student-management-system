@@ -15,7 +15,6 @@ public class MaterialUI {
     // -method should have static and not private.
     // So we can access that method call by "ClassName.method();"
 
-
     public static void paintTextFields(TextField... textFields){
         for (TextField txt : textFields) {
             AnchorPane pneTextContainer = (AnchorPane) txt.getParent();
@@ -45,6 +44,5 @@ public class MaterialUI {
         ctx.setFill(focus? Color.valueOf("#6200EE"):Color.rgb(0,0,0,0.6) );
         ctx.fillText(floatedText, 15, 10 );
     }
-
 
 }
