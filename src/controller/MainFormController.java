@@ -56,6 +56,7 @@ public class MainFormController {
             switch (icon) {
                 case NAV_ICON_NONE:
                     imgNav.setVisible(false);
+
                     break;
                 case NAV_ICON_HOME:
                     imgNav.setImage(new Image("view/assets/icons/home.png"));

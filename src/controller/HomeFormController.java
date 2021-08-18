@@ -5,7 +5,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import util.NavActionListener;
 
 import java.io.IOException;
 
@@ -27,13 +26,17 @@ public class HomeFormController {
 
     }
 
-
     public void pneAddNewStudent_OnKeyPress(KeyEvent keyEvent) {
-        navigate("Add New Student", "/view/StudentForm.fxml");
+        if (keyEvent.getCode() == KeyCode.ENTER || keyEvent.getCode() == KeyCode.SPACE) {
+            navigate("Add New Student", "/view/StudentForm.fxml");
+        }
     }
 
     public void pneSearchStudents_OnKeyPress(KeyEvent keyEvent) {
-        navigate("Search Student", "/view/StudentForm.fxml");
+        if (keyEvent.getCode() == KeyCode.ENTER || keyEvent.getCode() == KeyCode.SPACE) {
+
+            navigate("Search Student", "/view/StudentForm.fxml");
+        }
 //        if (keyEvent.getCode() == KeyCode.ENTER || keyEvent.getCode() == KeyCode.SPACE) {
 //            rprSearchStudents.createManualRipple().run();
 //        }
@@ -64,17 +67,15 @@ public class HomeFormController {
         }
     }
 
-
     private void navigate(String title, String url) {
 
-        System.out.println(preTitle + "     " + preUrl);
+//        System.out.println(preTitle + "     " + preUrl);
         MainFormController ctrl = (MainFormController) pneSearchStudents.getScene().getUserData();
         ctrl.navigate(title, url, MainFormController.NAV_ICON_BACK, () -> {
-            System.out.println("working");
+
 //                MainFormController ctrl = (MainFormController) pneSearchStudents.getScene().getUserData();
             ctrl.navigate(preTitle, preUrl, MainFormController.NAV_ICON_BACK);
         });
-
 
     }
 
