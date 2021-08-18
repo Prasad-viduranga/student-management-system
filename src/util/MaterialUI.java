@@ -19,11 +19,19 @@ public class MaterialUI {
         for (TextField txt : textFields) {
             AnchorPane pneTextContainer = (AnchorPane) txt.getParent();
             String floatedText = txt.getAccessibleText();
-            Canvas canvas = new Canvas(pneTextContainer.getPrefWidth(), pneTextContainer.getPrefHeight());
+            Canvas canvas = new Canvas();
+            // Canvas canvas = new Canvas(pneTextContainer.getPrefWidth(), pneTextContainer.getPrefHeight());
             GraphicsContext ctx = canvas.getGraphicsContext2D();
 
             pneTextContainer.getChildren().add(0,canvas);
-            redrawTextFieldCanvas(canvas, ctx, floatedText, false);
+            // redrawTextFieldCanvas(canvas, ctx, floatedText, false);
+
+            pneTextContainer.layoutBoundsProperty().addListener((observable, oldValue, newValue) -> {
+                canvas.setWidth(newValue.getWidth());
+                canvas.setHeight(newValue.getHeight());
+                redrawTextFieldCanvas(canvas, ctx, floatedText, false);
+            });
+
 
             txt.focusedProperty().addListener((observable, oldValue, newValue) -> {
                 redrawTextFieldCanvas(canvas, ctx, floatedText, newValue);
@@ -38,11 +46,11 @@ public class MaterialUI {
     private static void redrawTextFieldCanvas(Canvas canvas, GraphicsContext ctx, String floatedText, boolean focus){
         ctx.clearRect(0,0, canvas.getWidth(), canvas.getHeight());
         ctx.setStroke(focus? Color.valueOf("#6200EE") : Color.rgb(0,0,0,0.30));
-        ctx.strokeRoundRect(2,4,canvas.getWidth() - 4, canvas.getHeight() - 6,10,10);
-        ctx.setFill(Color.WHITE);
-        ctx.fillRect(10,0,new Text(floatedText).getLayoutBounds().getWidth() + 10,20);
+        ctx.strokeRoundRect(2,4,canvas.getWidth() - 4, canvas.getHeight() - 4,10,10);
+        ctx.setFill(Color.LIGHTGRAY);
+        ctx.fillRect(10,0,new Text(floatedText).getLayoutBounds().getWidth() + 10,18);
         ctx.setFill(focus? Color.valueOf("#6200EE"):Color.rgb(0,0,0,0.6) );
-        ctx.fillText(floatedText, 15, 10 );
+        ctx.fillText(floatedText, 15, 12 );
     }
 
 }

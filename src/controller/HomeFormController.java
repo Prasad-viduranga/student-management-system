@@ -5,6 +5,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import util.AppBar;
 
 import java.io.IOException;
 
@@ -71,11 +72,13 @@ public class HomeFormController {
 
 //        System.out.println(preTitle + "     " + preUrl);
         MainFormController ctrl = (MainFormController) pneSearchStudents.getScene().getUserData();
-        ctrl.navigate(title, url, MainFormController.NAV_ICON_BACK, () -> {
-
-//                MainFormController ctrl = (MainFormController) pneSearchStudents.getScene().getUserData();
-            ctrl.navigate(preTitle, preUrl, MainFormController.NAV_ICON_BACK);
-        });
+//        ctrl.navigate(title, url, MainFormController.NAV_ICON_BACK, () -> {
+//
+////                MainFormController ctrl = (MainFormController) pneSearchStudents.getScene().getUserData();
+//            ctrl.navigate(preTitle, preUrl, MainFormController.NAV_ICON_BACK);
+//        });
+        ctrl.navigate(title, url, AppBar.NAV_ICON_BACK, () ->
+                ctrl.navigate("Student Management System", "/view/HomeForm.fxml", AppBar.NAV_ICON_HOME));
 
     }
 

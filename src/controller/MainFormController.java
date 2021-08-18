@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import util.AppBar;
 import util.NavActionListener;
 
 import java.io.IOException;
@@ -35,7 +36,7 @@ public class MainFormController {
     public ImageView imgNav;
     private double xMousePos;
     private double yMousePos;
-    private int icon = NAV_ICON_NONE;
+    private AppBar icon =  AppBar.NAV_ICON_NONE;
     private NavActionListener navActionListener = null;
 
     public void initialize() {
@@ -43,11 +44,11 @@ public class MainFormController {
 
     }
 
-    public void navigate(String title, String url, int icon) {
+    public void navigate(String title, String url, AppBar icon) {
         navigate(title, url, icon, null);
     }
 
-    public void navigate(String title, String url, int icon, NavActionListener navActionListener) {
+    public void navigate(String title, String url, AppBar icon, NavActionListener navActionListener) {
 
         try {
             this.icon = icon;
@@ -130,7 +131,7 @@ public class MainFormController {
 
     private void swapNavIcon() {
 
-        if (icon != NAV_ICON_NONE) {
+        if (icon != AppBar.NAV_ICON_NONE && navActionListener != null) {
             Image tempImage = imgNav.getImage();
             imgNav.setImage((Image) imgNav.getUserData());
             imgNav.setUserData(tempImage);
