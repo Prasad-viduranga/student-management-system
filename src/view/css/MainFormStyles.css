@@ -1,7 +1,11 @@
 .menu:hover, .menu:focused{
-    -fx-border-color: #8b00ee;
+    -fx-border-color: #c584f1;
     -fx-border-radius: 5px;
     -fx-cursor: hand;
+}
+
+.menu:hover .menu-title{
+    -fx-text-fill: #c584f1;
 }
 
 #app-bar{

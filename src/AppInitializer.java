@@ -26,8 +26,8 @@ public class AppInitializer extends Application {
         MainFormController ctrl = fxmlLoader.getController();
         mainScene.setUserData(ctrl);
 
-        ctrl.navigate("Student Management System","/view/HomeForm.fxml", AppBar.NAV_ICON_NONE);
-
+        ctrl.navigate("Student Management System", "/view/HomeForm.fxml", AppBar.NAV_ICON_NONE);
+        primaryStage.setTitle("IJSE Student Management System");
         mainScene.setFill(Color.TRANSPARENT);
         primaryStage.initStyle(StageStyle.TRANSPARENT);
 
