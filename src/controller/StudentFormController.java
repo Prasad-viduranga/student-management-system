@@ -6,6 +6,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import util.MaterialUI;
 
+import java.time.LocalDate;
+import java.time.Period;
+
 public class StudentFormController {
 
     public TextField txtNIC;
@@ -16,20 +19,48 @@ public class StudentFormController {
     public TextField txtDOB;
     public JFXButton btnSave;
     public Label lblTitle;
+    public Label lblAge;
 
     public void initialize() {
 
         MaterialUI.paintTextFields(txtNIC, txtFullName, txtAddress, txtDOB, txtContactNumber, txtEmail);
 
+        setMaxLength(txtDOB, 10);
+        setMaxLength(txtContactNumber, 11);
+
+
         txtDOB.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue.length() > 10) {
-                txtDOB.setText(txtDOB.getText(0, 10));
+//            if (newValue.length() > 10) {
+//                txtDOB.setText(txtDOB.getText(0, 10));
+//            }
+            if (txtDOB.getLength() == 10){
+
+//                try {
+//                    Date dob = parseDate(txtDOB.getText());
+//                    Date today = new Date();
+//
+//                    long diff = today.getTime() - dob.getTime();
+//                    double year = diff / (1000 * 60 * 60 * 24 * 365.0) ;
+//                    System.out.println("Year: " + year);
+
+                LocalDate dob2 = LocalDate.parse(txtDOB.getText());
+                Period between = Period.between(dob2, LocalDate.now());
+
+                lblAge.setText(between.getYears() + " Years and " + between.getMonths() + " Months " + between.getDays() + " Days old");
+
+//                } catch (ParseException e) {
+//                    e.printStackTrace();
+//                }
             }
         });
 
-        txtContactNumber.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue.length() > 11) {
-                txtContactNumber.setText(txtDOB.getText(0, 11));
+
+    }
+
+    private void setMaxLength(TextField txt, int maxLength){
+        txt.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.length() > maxLength){
+                txt.setText(txt.getText(0,maxLength));
             }
         });
     }
@@ -50,6 +81,7 @@ public class StudentFormController {
             txtDOB.positionCaret(txtDOB.getText().length() + 1);
         }
     }
+
 
     public void txtContactNumber_OnKeyTyped(KeyEvent keyEvent) {
         if (keyEvent.getCharacter().equals("-") && (txtContactNumber.getText().length()==3)) {
