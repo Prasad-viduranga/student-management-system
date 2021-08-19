@@ -52,7 +52,7 @@ public class StudentFormController {
     }
 
     public void txtContactNumber_OnKeyTyped(KeyEvent keyEvent) {
-        if (keyEvent.getCharacter().equals("-")) {
+        if (keyEvent.getCharacter().equals("-") && (txtContactNumber.getText().length()==3)) {
             return;
         }
 
@@ -61,9 +61,9 @@ public class StudentFormController {
             return;
         }
 
-        if (txtContactNumber.getText().length() == 3) {
+        if ((txtContactNumber.getText().length() == 3)&&(txtContactNumber.getCaretPosition()==txtContactNumber.getLength())) {
             txtContactNumber.appendText("-");
-            txtContactNumber.positionCaret(txtDOB.getText().length() + 1);
+            txtContactNumber.positionCaret(txtContactNumber.getText().length() + 1);
         }
     }
 }
