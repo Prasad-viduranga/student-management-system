@@ -1,8 +1,10 @@
 package controller;
 
 import com.jfoenix.controls.JFXRippler;
+import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -12,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import javafx.util.Duration;
 import util.AppBar;
 import util.NavActionListener;
 
@@ -39,10 +42,7 @@ public class MainFormController {
     private AppBar icon =  AppBar.NAV_ICON_NONE;
     private NavActionListener navActionListener = null;
 
-    public void initialize() {
-        initWindow();
-
-    }
+    public void initialize() { initWindow(); }
 
     public void navigate(String title, String url, AppBar icon) {
         navigate(title, url, icon, null);
@@ -53,11 +53,18 @@ public class MainFormController {
         try {
             this.icon = icon;
             this.navActionListener = navActionListener;
+            imgNav.setVisible(true);
+
+            if (this.navActionListener == null){
+                imgNav.setCursor(Cursor.DEFAULT);
+            }else{
+                imgNav.setCursor(Cursor.HAND);
+            }
 
             switch (icon) {
                 case NAV_ICON_NONE:
                     imgNav.setVisible(false);
-
+                    imgNav.setUserData(null);
                     break;
                 case NAV_ICON_HOME:
                     imgNav.setImage(new Image("view/assets/icons/home.png"));
@@ -70,11 +77,16 @@ public class MainFormController {
             }
 
             Parent root = FXMLLoader.load(this.getClass().getResource(url));
+            FadeTransition ft = new FadeTransition(Duration.millis(750), root);
+
             pneStage.getChildren().clear();
             pneStage.getChildren().add(root);
             Stage stage = (Stage) (pneStage.getScene().getWindow());
             lblTitle.setText(title);
 
+            ft.setFromValue(0.5);
+            ft.setToValue(1);
+            ft.play();
 
             Platform.runLater(() -> {
                 stage.sizeToScene();
@@ -111,6 +123,15 @@ public class MainFormController {
             }
         });
 
+        imgNav.setOnMouseEntered(event -> swapNavIcon());
+        imgNav.setOnMouseExited(event -> swapNavIcon());
+
+        imgNav.setOnMouseClicked(event -> {
+            if (navActionListener != null) {
+                navActionListener.handler();
+            }
+        });
+
         imgClose.setOnMouseEntered(event -> imgClose.setImage(new Image("/view/assets/icons/close-hover.png")));
         imgClose.setOnMouseExited(event -> imgClose.setImage(new Image("/view/assets/icons/close.png")));
         imgClose.setOnMouseClicked(event -> ((Stage) (imgClose.getScene().getWindow())).close());
@@ -121,11 +142,7 @@ public class MainFormController {
 
         imgNav.setOnMouseEntered(event -> swapNavIcon());
         imgNav.setOnMouseExited(event -> swapNavIcon());
-        imgNav.setOnMouseClicked(event -> {
-            if (navActionListener != null){
-                navActionListener.handler();
-            }
-        });
+
 
     }
 
