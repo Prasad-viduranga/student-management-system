@@ -1,9 +1,12 @@
 package controller;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import model.Student;
+import service.StudentService;
 import util.MaterialUI;
 
 import java.time.LocalDate;
@@ -20,6 +23,8 @@ public class StudentFormController {
     public JFXButton btnSave;
     public Label lblTitle;
     public Label lblAge;
+
+    private StudentService studentService = new StudentService();
 
     public void initialize() {
 
@@ -97,5 +102,10 @@ public class StudentFormController {
             txtContactNumber.appendText("-");
             txtContactNumber.positionCaret(txtContactNumber.getText().length() + 1);
         }
+    }
+
+    public void btnSave_OnAction(ActionEvent actionEvent) {
+        Student student = new Student();
+        studentService.saveStudent(student);
     }
 }
