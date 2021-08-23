@@ -49,3 +49,9 @@
 #tbl-results .table-cell:empty{
     -fx-border-color: transparent;
 }
+
+#tbl-results .cell{
+    -fx-cell-size: 60px;
+    -fx-cell-size: 30px;
+    -fx-wrap-text: true;
+}

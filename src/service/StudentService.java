@@ -2,6 +2,7 @@ package service;
 
 import model.Student;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +10,20 @@ public class StudentService {
 
     //private static List<Student> studentsDB = new ArrayList<>();
     private static final List<Student> studentsDB = new ArrayList<>();
+
+    public StudentService() {
+
+        //Add some dummy data set
+        Student s1 = new Student("123456789V", "Kamal", "Galle", LocalDate.of(1996,05,01), "077-1234567", "abc@ijse.lk");
+        Student s2 = new Student("223456789V", "Amara", "Matara", LocalDate.of(1989,10,01), "071-3456789", "abc@gmail.lk");
+        Student s3 = new Student("323456789V", "Sunil", "Panadura", LocalDate.now(), "078-3456789", "abc@holmail.lk");
+        Student s4 = new Student("423456789V", "Ranil", "Matara", LocalDate.of(1989,10,01), "075-3456789", "abc@yahoo.lk");
+        saveStudent(s1);
+        saveStudent(s2);
+        saveStudent(s3);
+        saveStudent(s4);
+    }
+
 
     public void saveStudent(Student student) {
         studentsDB.add(student);

@@ -2,6 +2,8 @@ package controller;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
@@ -105,7 +107,21 @@ public class StudentFormController {
     }
 
     public void btnSave_OnAction(ActionEvent actionEvent) {
-        Student student = new Student();
-        studentService.saveStudent(student);
+       // Student student = new Student();
+       // studentService.saveStudent(student);
+
+        try {
+            Student student = new Student(txtNIC.getText(),
+                    txtFullName.getText(),
+                    txtAddress.getText(),
+                    LocalDate.parse(txtDOB.getText()),
+                    txtContactNumber.getText(),
+                    txtEmail.getText());
+            studentService.saveStudent(student);
+            new Alert(Alert.AlertType.NONE, "Student has been saved successfully", ButtonType.OK).show();
+        }catch (RuntimeException e){
+            new Alert(Alert.AlertType.ERROR, "Failed to save the student", ButtonType.OK).show();
+        }
+
     }
 }
