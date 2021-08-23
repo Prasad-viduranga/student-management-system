@@ -11,17 +11,17 @@ public class StudentService {
     //private static List<Student> studentsDB = new ArrayList<>();
     private static final List<Student> studentsDB = new ArrayList<>();
 
-    public StudentService() {
+    static  {
 
         //Add some dummy data set
         Student s1 = new Student("123456789V", "Kamal", "Galle", LocalDate.of(1996,05,01), "077-1234567", "abc@ijse.lk");
         Student s2 = new Student("223456789V", "Amara", "Matara", LocalDate.of(1989,10,01), "071-3456789", "abc@gmail.lk");
         Student s3 = new Student("323456789V", "Sunil", "Panadura", LocalDate.now(), "078-3456789", "abc@holmail.lk");
         Student s4 = new Student("423456789V", "Ranil", "Matara", LocalDate.of(1989,10,01), "075-3456789", "abc@yahoo.lk");
-        saveStudent(s1);
-        saveStudent(s2);
-        saveStudent(s3);
-        saveStudent(s4);
+        studentsDB.add(s1);
+        studentsDB.add(s2);
+        studentsDB.add(s3);
+        studentsDB.add(s4);
     }
 
 
