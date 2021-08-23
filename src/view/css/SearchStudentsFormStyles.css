@@ -13,13 +13,7 @@
     -fx-font-size: 14px;
 }
 
-
-
-
-
 #tbl-results .table-row-cell:filled:hover{
-
-   // -fx-background-color: rgba(226, 206, 255, 0.71);
     -fx-background-color: rgba(226, 206, 255, 0.71);
     -fx-background-insets: 1px 1px 0px 1px;
     -fx-background-radius: 4px;
@@ -42,7 +36,7 @@
 }
 
 #tbl-results .cell{
-    -fx-cell-size: 60px;
+    -fx-cell-size: 30px;
     -fx-wrap-text: true;
 }
 
@@ -50,8 +44,6 @@
     -fx-border-color: transparent;
 }
 
-#tbl-results .cell{
-    -fx-cell-size: 60px;
-    -fx-cell-size: 30px;
-    -fx-wrap-text: true;
+.action-icons{
+    -fx-cursor: hand;
 }
