@@ -15,4 +15,22 @@
 #title{
     -fx-font-size: 14px;
     -fx-font-weight: 500;
+}.menu:hover, .menu:focused{
+     -fx-border-color: #8b00ee;
+     -fx-border-radius: 5px;
+     -fx-cursor: hand;
+ }
+
+.menu:hover .menu-title{
+    -fx-text-fill:  #8b00ee;
 }
+
+#app-bar{
+    -fx-background-radius: 5px 5px 0 0;
+}
+
+#title{
+    -fx-font-size: 14px;
+    -fx-font-weight: 500;
+}
+

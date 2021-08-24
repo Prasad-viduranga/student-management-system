@@ -2,6 +2,8 @@ package controller;
 
 import com.jfoenix.controls.JFXRippler;
 import javafx.animation.FadeTransition;
+import javafx.animation.Transition;
+import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
@@ -15,6 +17,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.util.Duration;
+import util.AppBar;
 import util.AppBar;
 import util.NavActionListener;
 
@@ -175,5 +178,3 @@ public class MainFormController {
     }
 
 }
-
-

@@ -52,5 +52,4 @@ public class MaterialUI {
         ctx.setFill(focus? Color.valueOf("#6200EE"):Color.rgb(0,0,0,0.6) );
         ctx.fillText(floatedText, 15, 12 );
     }
-
 }

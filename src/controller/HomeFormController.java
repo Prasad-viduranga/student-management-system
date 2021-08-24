@@ -81,5 +81,4 @@ public class HomeFormController {
                 ctrl.navigate("Student Management System", "/view/HomeForm.fxml", AppBar.NAV_ICON_HOME));
 
     }
-
 }

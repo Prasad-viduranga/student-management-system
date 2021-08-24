@@ -1,18 +1,24 @@
 package controller;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.util.StringConverter;
+import javafx.util.converter.DateTimeStringConverter;
+import javafx.util.converter.FormatStringConverter;
 import model.Student;
 import service.StudentService;
 import util.MaterialUI;
 
+import java.text.*;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Date;
 
 public class StudentFormController {
 
@@ -107,8 +113,8 @@ public class StudentFormController {
     }
 
     public void btnSave_OnAction(ActionEvent actionEvent) {
-       // Student student = new Student();
-       // studentService.saveStudent(student);
+        // Student student = new Student();
+        // studentService.saveStudent(student);
 
         try {
             Student student = new Student(txtNIC.getText(),
